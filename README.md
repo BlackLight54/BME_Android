@@ -1,0 +1,1 @@
+# BME Androidalapú szoftverfejleszés tárgy labormegoldásai
