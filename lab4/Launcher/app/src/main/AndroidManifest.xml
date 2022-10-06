@@ -26,6 +26,11 @@
                 <category android:name="android.intent.category.HOME" />
             </intent-filter>
         </activity>
-    </application>
 
+    </application>
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+        </intent>
+    </queries>
 </manifest>

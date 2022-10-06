@@ -1,6 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    android:padding="@dimen/activity_horizontal_margin">
+
+    <EditText
+        android:id="@+id/etCall"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:inputType="phone"
+        android:textSize="@dimen/dialer_text_size"
+        app:layout_constraintBottom_toTopOf="@id/tableLayout"
+        app:layout_constraintEnd_toStartOf="@id/btnCallBackSpace"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:clickable="false"
+        android:focusable="false" />
+
+    <ImageButton
+        android:id="@+id/btnCallBackSpace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tableLayout"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_backspace_black_24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/etCall"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:stretchColumns="*"
+        app:layout_constraintBottom_toTopOf="@id/btnCall"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etCall">
+
+        <TableRow>
+
+            <Button
+                android:id="@+id/btnDialer1"
+                style="@style/DialerButton"
+                android:text="1" />
+
+            <Button
+                android:id="@+id/btnDialer2"
+                style="@style/DialerButton"
+                android:text="2" />
+
+            <Button
+                android:id="@+id/btnDialer3"
+                style="@style/DialerButton"
+                android:text="3" />
+
+        </TableRow>
+
+        <TableRow>
+
+            <Button
+                android:id="@+id/btnDialer4"
+                style="@style/DialerButton"
+                android:text="4" />
+
+            <Button
+                android:id="@+id/btnDialer5"
+                style="@style/DialerButton"
+                android:text="5" />
+
+            <Button
+                android:id="@+id/btnDialer6"
+                style="@style/DialerButton"
+                android:text="6" />
+
+        </TableRow>
+
+        <TableRow>
+
+            <Button
+                android:id="@+id/btnDialer7"
+                style="@style/DialerButton"
+                android:text="7" />
+
+            <Button
+                android:id="@+id/btnDialer8"
+                style="@style/DialerButton"
+                android:text="8" />
+
+            <Button
+                android:id="@+id/btnDialer9"
+                style="@style/DialerButton"
+                android:text="9" />
+
+        </TableRow>
+
+        <TableRow>
+
+            <Button
+                android:id="@+id/btnDialerStar"
+                style="@style/DialerButton"
+                android:text="*" />
+
+            <Button
+                android:id="@+id/btnDialer0"
+                style="@style/DialerButton"
+                android:text="0" />
+
+            <Button
+                android:id="@+id/btnDialerHashmark"
+                style="@style/DialerButton"
+                android:text="#" />
+
+        </TableRow>
+    </TableLayout>
+
+    <Button
+        android:id="@+id/btnCall"
+        style="@style/DialerButton"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="center"
+        android:padding="15dp"
+        android:text="@string/call"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
