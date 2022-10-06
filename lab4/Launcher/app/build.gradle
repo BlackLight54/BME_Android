@@ -7,7 +7,7 @@ android {
     namespace 'hu.bme.aut.android.launcher'
     compileSdk 32
 
-    buildFeatures{
+    buildFeatures {
         viewBinding true
     }
     defaultConfig {
