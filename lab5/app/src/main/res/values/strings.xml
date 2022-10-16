@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Contacts</string>
+    <string name="contact_name_placeholder">Name is not set</string>
+    <string name="contact_number_placeholder">"Phoner number is not set "</string>
 </resources>
