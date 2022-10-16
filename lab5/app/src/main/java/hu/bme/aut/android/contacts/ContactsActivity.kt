@@ -14,7 +14,7 @@ import hu.bme.aut.android.contacts.adapter.ContactsAdapter
 import hu.bme.aut.android.contacts.databinding.ActivityContactsBinding
 import hu.bme.aut.android.contacts.model.Contact
 import hu.bme.aut.android.contacts.util.getStringByColumnName
-
+// GV2RF8
 class ContactsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityContactsBinding
 
