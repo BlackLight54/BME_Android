@@ -24,16 +24,14 @@ class SimpleItemRecyclerViewAdapter : ListAdapter<Todo, SimpleItemRecyclerViewAd
         }
     }
 
-    private var todoList = emptyList<Todo>()
-
     var itemClickListener: TodoItemClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
         RowTodoBinding.inflate(
-        LayoutInflater.from(parent.context), parent, false))
+            LayoutInflater.from(parent.context), parent, false))
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val todo = todoList[position]
+        val todo = this.getItem(position)
 
         holder.todo = todo
 
@@ -47,23 +45,6 @@ class SimpleItemRecyclerViewAdapter : ListAdapter<Todo, SimpleItemRecyclerViewAd
         }
         holder.binding.ivPriority.setImageResource(resource)
     }
-
-    fun addItem(todo: Todo) {
-        todoList += todo
-        submitList(todoList)
-    }
-
-    fun addAll(todos: List<Todo>) {
-        todoList += todos
-        submitList(todoList)
-    }
-
-    fun deleteRow(position: Int) {
-        todoList = todoList.filterIndexed { index, _ -> index != position }
-        submitList(todoList)
-    }
-
-    override fun getItemCount() = todoList.size
 
     inner class ViewHolder(val binding: RowTodoBinding) : RecyclerView.ViewHolder(binding.root) {
         var todo: Todo? = null
