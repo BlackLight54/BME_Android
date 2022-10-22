@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Todo</string>
+    <string name="title_todo_list">Todos</string>
+    <string name="title_todo_detail">Todo Detail</string>
+    <string name="itemCreateTodo">Create</string>
+    <string name="lblTodoTitle">Todo label</string>
+    <string name="lblTodoPriority">Priority</string>
+    <string name="lblTodoDueDate">Due date</string>
+    <string name="lblTodoDescription">Description</string>
+    <string name="btnOk">OK</string>
+    <string name="btnCancel">Cancel</string>
+    <string name="dummyDescription">dummyDescription</string>
+</resources>
