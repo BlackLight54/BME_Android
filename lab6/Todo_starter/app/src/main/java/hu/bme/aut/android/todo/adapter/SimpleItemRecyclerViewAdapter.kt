@@ -55,7 +55,7 @@ class SimpleItemRecyclerViewAdapter : ListAdapter<Todo, SimpleItemRecyclerViewAd
             }
 
             itemView.setOnLongClickListener { view ->
-                itemClickListener?.onItemLongClick(adapterPosition, view)
+                todo?.let {todo -> itemClickListener?.onItemLongClick(adapterPosition, view, todo) }
                 true
             }
         }
@@ -63,6 +63,6 @@ class SimpleItemRecyclerViewAdapter : ListAdapter<Todo, SimpleItemRecyclerViewAd
 
     interface TodoItemClickListener {
         fun onItemClick(todo: Todo)
-        fun onItemLongClick(position: Int, view: View): Boolean
+        fun onItemLongClick(position: Int, view: View,todo: Todo): Boolean
     }
 }

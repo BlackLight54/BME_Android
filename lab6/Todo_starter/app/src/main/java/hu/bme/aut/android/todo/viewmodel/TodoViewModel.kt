@@ -23,4 +23,7 @@ class TodoViewModel : ViewModel() {
     fun insert(todo: Todo) = viewModelScope.launch {
         repository.insert(todo)
     }
+    fun delete(todo: Todo) = viewModelScope.launch {
+        repository.delete(todo)
+    }
 }

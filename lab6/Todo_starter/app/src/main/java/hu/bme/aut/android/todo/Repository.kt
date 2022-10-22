@@ -40,4 +40,8 @@ class Repository(private val todoDao: TodoDao) {
             dueDate = dueDate
         )
     }
+    suspend fun delete(todo: Todo) = withContext(Dispatchers.IO) {
+        val roomTodo = todoDao.getTodoById(todo.id) ?: return@withContext
+        todoDao.deleteTodo(roomTodo)
+    }
 }

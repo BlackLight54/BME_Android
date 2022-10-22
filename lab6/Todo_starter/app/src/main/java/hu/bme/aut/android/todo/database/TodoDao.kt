@@ -18,4 +18,6 @@ interface TodoDao {
     @Delete
     fun deleteTodo(todo: RoomTodo)
 
+    @Query("SELECT * FROM todo WHERE id == :id")
+    fun getTodoById(id: Int?): RoomTodo?
 }

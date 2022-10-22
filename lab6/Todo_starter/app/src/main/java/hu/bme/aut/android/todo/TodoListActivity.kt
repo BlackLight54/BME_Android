@@ -77,12 +77,15 @@ class TodoListActivity : AppCompatActivity(), TodoCreateFragment.TodoCreatedList
         }
     }
 
-    override fun onItemLongClick(position: Int, view: View): Boolean {
+    override fun onItemLongClick(position: Int, view: View, todo: Todo): Boolean {
         val popup = PopupMenu(this, view)
         popup.inflate(R.menu.menu_todo)
         popup.setOnMenuItemClickListener { item ->
             when (item.itemId) {
-//                R.id.delete -> simpleItemRecyclerViewAdapter.deleteRow(position)
+                R.id.delete -> {
+                    todoViewModel.delete(todo)
+                    return@setOnMenuItemClickListener true
+                }
             }
             false
         }
