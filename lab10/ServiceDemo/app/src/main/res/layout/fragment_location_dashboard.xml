@@ -10,6 +10,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <Button
+            android:id="@+id/btnGeocode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Position details"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <include
             android:id="@+id/fieldProvider"
             layout="@layout/tile_info"
@@ -17,7 +26,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="6dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnGeocode" />
 
         <include
             android:id="@+id/fieldLat"

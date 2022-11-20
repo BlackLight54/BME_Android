@@ -4,6 +4,7 @@ import android.app.*
 import android.content.Context
 import android.content.Intent
 import android.location.Location
+import android.os.Binder
 import android.os.Build
 import android.os.IBinder
 import androidx.core.app.NotificationCompat
@@ -33,7 +34,7 @@ class LocationService : Service() {
     var lastLocation: Location? = null
         private set
 
-    override fun onBind(intent: Intent): IBinder? = null
+    override fun onBind(intent: Intent): IBinder = locationServiceBinder
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
         startForeground(NOTIFICATION_ID, createNotification("Starting location service..."))
@@ -120,4 +121,11 @@ class LocationService : Service() {
             manager.createNotificationChannel(serviceChannel)
         }
     }
+
+    inner class ServiceLocationBinder : Binder() {
+        val service: LocationService
+            get() = this@LocationService
+    }
+
+    private val locationServiceBinder: IBinder = ServiceLocationBinder()
 }

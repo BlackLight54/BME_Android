@@ -2,12 +2,10 @@ package hu.bme.aut.android.servicedemo
 
 import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import android.Manifest.permission.ACCESS_FINE_LOCATION
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
+import android.content.*
 import android.location.Location
 import android.os.Bundle
+import android.os.IBinder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import hu.bme.aut.android.servicedemo.databinding.FragmentLocationDashboardBinding
 import hu.bme.aut.android.servicedemo.service.LocationService
+import hu.bme.aut.android.servicedemo.task.GeoCoderTask
 import permissions.dispatcher.NeedsPermission
 import permissions.dispatcher.RuntimePermissions
 import java.util.*
@@ -41,7 +40,25 @@ class LocationDashboardFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
+        val context = requireContext()
+
+        val intent = Intent(context, LocationService::class.java)
+        context.bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
+
         registerReceiverWithPermissionCheck()
+    }
+
+    override fun onStop() {
+        val context = requireContext()
+
+        if (locationServiceBinder != null) {
+            context.unbindService(serviceConnection)
+        }
+
+        LocalBroadcastManager.getInstance(context)
+            .unregisterReceiver(locationReceiver)
+
+        super.onStop()
     }
 
     @NeedsPermission(
@@ -51,13 +68,6 @@ class LocationDashboardFragment : Fragment() {
     fun registerReceiver() {
         LocalBroadcastManager.getInstance(requireContext())
             .registerReceiver(locationReceiver, IntentFilter(LocationService.BR_NEW_LOCATION))
-    }
-
-    override fun onStop() {
-        LocalBroadcastManager.getInstance(requireContext())
-            .unregisterReceiver(locationReceiver)
-
-        super.onStop()
     }
 
     override fun onRequestPermissionsResult(
@@ -89,5 +99,24 @@ class LocationDashboardFragment : Fragment() {
         binding.fieldSpeed.tvHead.text = "Speed:"
         binding.fieldAlt.tvHead.text = "Height:"
         binding.fieldPosTime.tvHead.text = "Position time:"
+
+        binding.btnGeocode.setOnClickListener {
+            val location = locationServiceBinder?.service?.lastLocation
+            if (location != null) {
+                Thread(GeoCoderTask(requireContext().applicationContext, location)).start()
+            }
+        }
+    }
+
+    private var locationServiceBinder: LocationService.ServiceLocationBinder? = null
+
+    private val serviceConnection = object : ServiceConnection {
+        override fun onServiceConnected(componentName: ComponentName, binder: IBinder) {
+            locationServiceBinder = binder as LocationService.ServiceLocationBinder
+        }
+
+        override fun onServiceDisconnected(componentName: ComponentName) {
+            locationServiceBinder = null
+        }
     }
 }
