@@ -25,6 +25,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <service android:name=".service.FileSystemStatsIntentService"/>
     </application>
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
