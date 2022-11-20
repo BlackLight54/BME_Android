@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -53,4 +54,8 @@ dependencies {
     def lifecycle_version = "2.4.0"
     implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+
+    def pd_version = "4.9.2"
+    implementation "com.github.permissions-dispatcher:permissionsdispatcher:$pd_version"
+    kapt  "com.github.permissions-dispatcher:permissionsdispatcher-processor:$pd_version"
 }
