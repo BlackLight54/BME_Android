@@ -34,7 +34,7 @@ class SettingsActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferen
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
         when(key) {
-            KEY_START_SERVICE -> {
+            KEY_START_SERVICE, KEY_WITH_FLOATING -> {
                 startOrStopServiceAsNecessary(sharedPreferences, applicationContext)
             }
         }
@@ -42,16 +42,19 @@ class SettingsActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferen
 
     companion object {
         const val KEY_START_SERVICE = "start_service"
+        const val KEY_WITH_FLOATING = "with_floating"
 
         fun startOrStopServiceAsNecessary(sharedPreferences: SharedPreferences, context: Context) {
             val startService = sharedPreferences.getBoolean(KEY_START_SERVICE, false)
+            val withFloating = sharedPreferences.getBoolean(KEY_WITH_FLOATING, false)
 
             val intent = Intent(context, LocationService::class.java)
 
+            context.stopService(intent)
+
             if (startService) {
+                intent.putExtra(KEY_WITH_FLOATING, withFloating)
                 context.startService(intent)
-            } else {
-                context.stopService(intent)
             }
         }
     }
