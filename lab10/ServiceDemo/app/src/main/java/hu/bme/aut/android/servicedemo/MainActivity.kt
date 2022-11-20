@@ -54,6 +54,10 @@ class MainActivity : AppCompatActivity() {
                 intentStartService.putExtra(FileSystemStatsIntentService.KEY_MESSENGER, freeSpaceMessenger)
                 startService(intentStartService)
             }
+            R.id.action_settings -> {
+                val intentSettings = Intent(this, SettingsActivity::class.java)
+                startActivity(intentSettings)
+            }
         }
 
         return true

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/title_settings">
+        <SwitchPreference
+            android:key="start_service"
+            android:summaryOff="@string/label_off"
+            android:summaryOn="@string/label_on"
+            android:title="@string/title_start_service" />
+    </PreferenceCategory>
+</PreferenceScreen>
